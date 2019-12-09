@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Coffeemashine</string>
+    <string name="coins">Coins:</string>
+    <string name="sugar0"> Nothing to se there</string>
+    <string name="sugar1">A little scoop </string>
+    <string name="sugar2">Medium Sugar deLuxe</string>
+    <string name="sugar4">Stack Overflow Sugar</string>
+    <string name="sugar3">OVER 9000!</string>
+    <string name="initAmount">0.00$</string>
+    <string name="sugar">Sugar</string>
+    <string name="currency">$</string>
+
+</resources>

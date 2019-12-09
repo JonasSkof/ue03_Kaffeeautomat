@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaffeeautomat</string>
+    <string name="coins">Münzen:</string>
+    <string name="sugar0">Nix Zucker</string>
+    <string name="sugar1">Bisi Zucker</string>
+    <string name="sugar2">Medium Zucker</string>
+    <string name="sugar4">Stack Overflow Zucker</string>
+    <string name="sugar3">Vü Zucker</string>
+    <string name="initAmount">0.00€</string>
+    <string name="sugar">Zucker</string>
+    <string name="currency">€</string>
+
+</resources>

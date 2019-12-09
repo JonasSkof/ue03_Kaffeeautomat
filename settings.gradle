@@ -1,0 +1,2 @@
+rootProject.name='ue03_Kaffeeautomat'
+include ':app'
