@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SeekbarTheme" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="tickMarkTint">@color/white</item>
+        <item name="android:progressBackgroundTint">@color/white</item>
+        <item name="android:progressTint">@color/white</item>
+        <item name="thumbTint">@color/white</item>
+
+    </style>
 </resources>

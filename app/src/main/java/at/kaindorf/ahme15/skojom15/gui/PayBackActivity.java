@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import at.kaindorf.ahme15.skojom15.R;
+import at.kaindorf.ahme15.skojom15.data.RestgeldRechner;
 
 public class PayBackActivity extends AppCompatActivity {
 
@@ -127,10 +129,42 @@ public class PayBackActivity extends AppCompatActivity {
   final MyAdapter adapter;
   recyclerView.setAdapter(adapter = new MyAdapter());
 
-  try{
 
-      if(getIntent().hasExtra("amount"))
-          adapter.add("Rückgeld ==> " +  getIntent().getDoubleExtra("amount",0.00)  + "€"  , getDrawable(R.drawable.cent10));
+  try{
+       Bundle bundle = getIntent().getExtras();
+
+      if(bundle != null) {
+       double amount = bundle.getDouble("amount");
+
+       int a2 = (int) (amount/2.00);
+       int a1 =0,a05=0,a02=0,a01=0,a005=0;
+
+       if(amount% 2.00 >= 0.00) {
+           a1 = (int) ((amount % 2.00) / 1.00);
+       }else
+        if(amount% 1.00 > 0.00) {
+           a05 = (int) ((amount % 1.00) / 0.50);
+        }else
+        if(amount% 0.50 > 0.00) {
+         a02 = (int) ((amount % 0.50) / 0.20);
+        }else
+        if(amount% 0.20 > 0.00) {
+         a01 = (int) ((amount % 0.20) / 0.10);
+        }else
+        if(amount% 0.10 > 0.00) {
+         a005 = (int) ((amount % 0.10) / 0.05);
+        }
+
+       adapter.add( String.format(Locale.GERMANY,"%d",a2)+"x",getDrawable(R.drawable.euro_2));
+       adapter.add( String.format(Locale.GERMANY,"%d",a1)+"x",getDrawable(R.drawable.euro_1));
+       adapter.add( String.format(Locale.GERMANY,"%d",a05)+"x",getDrawable(R.drawable.cent_50));
+       adapter.add( String.format(Locale.GERMANY,"%d",a02)+"x",getDrawable(R.drawable.cent_20));
+       adapter.add( String.format(Locale.GERMANY,"%d",a01)+"x",getDrawable(R.drawable.cent_10));
+       adapter.add( String.format(Locale.GERMANY,"%d",a005)+"x",getDrawable(R.drawable.cent_5));
+
+      }
+      setContentView(recyclerView);
+
 
 
   }catch (Exception ex)
@@ -145,13 +179,6 @@ public class PayBackActivity extends AppCompatActivity {
  public boolean onSupportNavigateUp() {
   onBackPressed();
   return true;
- }
-
- public int drawableChooser () {
-
-  return 700056;
-
-
  }
 
 

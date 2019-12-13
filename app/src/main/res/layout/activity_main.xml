@@ -15,7 +15,7 @@
             android:id="@+id/tableLayout"
             android:layout_width="258dp"
             android:layout_height="274dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="300dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -138,11 +138,11 @@
             android:id="@+id/btAbbruch"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/custom_button"
-            android:text="ABBRUCH"
+            android:text="@string/bt_Cancel"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,10 +154,10 @@
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/custom_button"
-            android:text="COFFEE TO GO"
+            android:text="@string/bt_Coffee2Go"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -178,17 +178,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-        <SeekBar
+        <com.etiennelawlor.discreteslider.library.ui.DiscreteSeekBar
             android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="230dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:progress="2"
             android:min="0"
             android:max="4"
+            android:theme="@style/SeekbarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSugar" />
+
 
         <TextView
             android:id="@+id/textView4"
@@ -223,7 +226,7 @@
             android:layout_width="342dp"
             android:layout_height="254dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

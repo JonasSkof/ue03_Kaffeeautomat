@@ -2,13 +2,17 @@
 <resources>
     <string name="app_name">Kaffeeautomat</string>
     <string name="coins">Münzen:</string>
-    <string name="sugar0">Nix Zucker</string>
-    <string name="sugar1">Bisi Zucker</string>
-    <string name="sugar2">Medium Zucker</string>
-    <string name="sugar4">Stack Overflow Zucker</string>
-    <string name="sugar3">Vü Zucker</string>
+    <string name="sugar0">Keinen Zucker</string>
+    <string name="sugar1">Wenig Zucker</string>
+    <string name="sugar2">Mittel Zucker</string>
+    <string name="sugar4">Viel Zucker</string>
+    <string name="sugar3">Sehr viel Zucker</string>
     <string name="initAmount">0.00€</string>
     <string name="sugar">Zucker</string>
     <string name="currency">€</string>
+    <string name="bt_Cancel">Abbruch</string>
+    <string name="bt_Coffee2Go">Bestätigen</string>
+    <string name="error1">Bitte Kaffee auswählen</string>
+    <string name="error2">Bitte Münzen einwerfen</string>
 
 </resources>

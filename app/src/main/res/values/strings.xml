@@ -1,13 +1,17 @@
 <resources>
-    <string name="app_name">Coffeemashine</string>
+    <string name="app_name">Coffeemachine</string>
     <string name="coins">Coins:</string>
-    <string name="sugar0"> Nothing to se there</string>
-    <string name="sugar1">A little scoop </string>
-    <string name="sugar2">Medium Sugar deLuxe</string>
-    <string name="sugar4">Stack Overflow Sugar</string>
-    <string name="sugar3">OVER 9000!</string>
+    <string name="sugar0">No Sugar</string>
+    <string name="sugar1">Little Sugar</string>
+    <string name="sugar2">Medium Sugar</string>
+    <string name="sugar4">Much Sugar</string>
+    <string name="sugar3">A lot of Sugar</string>
     <string name="initAmount">0.00$</string>
     <string name="sugar">Sugar</string>
     <string name="currency">$</string>
+    <string name="bt_Cancel">Cancel</string>
+    <string name="bt_Coffee2Go">Coffee2Go</string>
+    <string name="error1">Choose a coffee</string>
+    <string name="error2">Insert coins</string>
 
 </resources>

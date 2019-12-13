@@ -1,11 +1,14 @@
 package at.kaindorf.ahme15.skojom15.gui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +18,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import at.kaindorf.ahme15.skojom15.R;
 import at.kaindorf.ahme15.skojom15.data.Coffee;
+import at.kaindorf.ahme15.skojom15.data.RestgeldRechner;
 
 public class CoffeeMachineActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,9 +43,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
             String s = coffee.getName() + "(" + String.format("%.0f",100* coffee.getPrice()) + "¢)";
             int textColor = Color.parseColor("white");
             radioButton.setButtonTintList(ColorStateList.valueOf(textColor));
-            radioButton.setTextColor(getResources().getColor(R.color.white));
-          //  Typeface font = Typeface.createFromAsset(this.getAssets(), "fonts/mockingbird.otf");
-         //   radioButton.setTypeface(font);
+            radioButton.setTextColor(getResources().getColor(R.color.white, null));
             radioButton.setText(s);
             radioGroup.addView(radioButton);
         }
@@ -74,7 +78,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
             case R.id.bt4: { amount += 0.20; break;}
             case R.id.bt5: { amount += 0.10; break;}
             case R.id.bt6: { amount += 0.05; break;}
-            case R.id.btAbbruch: { System.exit(0); }
+            case R.id.btAbbruch: {  amount = 0; }
         }
         TextView tvAmount = findViewById(R.id.tvAmount);
         tvAmount.setText(String.format("%.2f",amount)+ getString(R.string.currency));
@@ -84,13 +88,14 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
 
         SeekBar seekBar = findViewById(R.id.seekBar);
 
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TextView textView = findViewById(R.id.tvSugar);
 
                 switch(progress) {
-                    case 0: { textView.setText(getText(R.string.sugar0)); break;}
+                    case 0: { textView.setText(getText(R.string.sugar0))  ;}
                     case 1: { textView.setText(R.string.sugar1); break;}
                     case 2: { textView.setText(R.string.sugar2); break;}
                     case 3: { textView.setText(R.string.sugar3); break; }
@@ -124,9 +129,9 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
                         Intent intent = new Intent(CoffeeMachineActivity.this, PayBackActivity.class);
                         Coffee[] coffees = Coffee.values();
                         if(radioGroup.getCheckedRadioButtonId() == -1) {
-                            printToast("Nimm amol a kaffetschi");
+                            printToast(getString(R.string.error1));
                         }
-                        double coffeePrice = coffees[radioGroup.getCheckedRadioButtonId()].getPrice();
+                        double coffeePrice = coffees[(radioGroup.getCheckedRadioButtonId())-1].getPrice();
 
                         if (amount >= coffeePrice) {
                             amount -= coffeePrice;
@@ -135,7 +140,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
                             tvAmount.setText(String.format("%.2f", amount) + getString(R.string.currency));
                             startActivity(intent);
                         } else {
-                            printToast("Hau ane münzen eini");
+                            printToast(getString(R.string.error2));
                         }
 
 
@@ -152,6 +157,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,5 +166,19 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
         onCoffeeToGo();
         buttonHandler();
         setSugarText();
+
+        if(savedInstanceState!= null) {
+            amount = savedInstanceState.getDouble("amount");
+            TextView tvAmount = findViewById(R.id.tvAmount);
+            tvAmount.setText(String.format("%.2f", amount) + getString(R.string.currency));
+        }
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("amount", amount);
+
+    }
+
 }
