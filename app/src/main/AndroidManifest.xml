@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".gui.PayBackActivity" />
-        <activity android:name=".data.RestgeldRechner" />
     </application>
 
 </manifest>

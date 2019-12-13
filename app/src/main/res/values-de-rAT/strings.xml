@@ -7,12 +7,18 @@
     <string name="sugar2">Mittel Zucker</string>
     <string name="sugar4">Viel Zucker</string>
     <string name="sugar3">Sehr viel Zucker</string>
-    <string name="initAmount">0.00€</string>
+    <string name="initAmount">0.00 €</string>
     <string name="sugar">Zucker</string>
     <string name="currency">€</string>
     <string name="bt_Cancel">Abbruch</string>
     <string name="bt_Coffee2Go">Bestätigen</string>
     <string name="error1">Bitte Kaffee auswählen</string>
     <string name="error2">Bitte Münzen einwerfen</string>
+    <string name="money2">2€</string>
+    <string name="money1">1€</string>
+    <string name="money050">50¢</string>
+    <string name="money020">20¢</string>
+    <string name="money010">10¢</string>
+    <string name="money005">5¢</string>
 
 </resources>

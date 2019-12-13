@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import at.kaindorf.ahme15.skojom15.R;
-import at.kaindorf.ahme15.skojom15.data.RestgeldRechner;
 
 public class PayBackActivity extends AppCompatActivity {
 
@@ -132,36 +132,52 @@ public class PayBackActivity extends AppCompatActivity {
 
   try{
        Bundle bundle = getIntent().getExtras();
+        NumberFormat n = NumberFormat.getInstance();
+        n.setMaximumFractionDigits(2);
 
       if(bundle != null) {
        double amount = bundle.getDouble("amount");
 
-       int a2 = (int) (amount/2.00);
-       int a1 =0,a05=0,a02=0,a01=0,a005=0;
+       if(amount != 0.00) {
 
-       if(amount% 2.00 >= 0.00) {
-           a1 = (int) ((amount % 2.00) / 1.00);
-       }else
-        if(amount% 1.00 > 0.00) {
-           a05 = (int) ((amount % 1.00) / 0.50);
-        }else
-        if(amount% 0.50 > 0.00) {
-         a02 = (int) ((amount % 0.50) / 0.20);
-        }else
-        if(amount% 0.20 > 0.00) {
-         a01 = (int) ((amount % 0.20) / 0.10);
-        }else
-        if(amount% 0.10 > 0.00) {
-         a005 = (int) ((amount % 0.10) / 0.05);
+        amount += 0.0000001;
+
+        int a2 = (int) (amount / 2.00);
+        amount -= a2 * 2;
+
+        int a1 = (int) (amount / 1.00);
+        amount -= a1;
+
+        int a05 = (int) (amount / 0.5);
+        amount -= a05 * 0.5;
+
+        int a02 = (int) (amount / 0.2);
+        amount -= a02 * 0.2;
+
+        int a01 = (int) (amount / 0.1);
+        amount -= a01 * 0.1;
+
+        int a005 = (int) (amount / 0.05);
+
+
+        if (a2 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a2) + "x", getDrawable(R.drawable.euro_2));
+
+        if (a1 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a1) + "x", getDrawable(R.drawable.euro_1));
+
+        if (a05 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a05) + "x", getDrawable(R.drawable.cent_50));
+
+        if (a02 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a02) + "x", getDrawable(R.drawable.cent_20));
+
+        if (a01 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a01) + "x", getDrawable(R.drawable.cent_10));
+
+        if (a005 > 0)
+         adapter.add(String.format(Locale.GERMANY, "%d", a005) + "x", getDrawable(R.drawable.cent_5));
         }
-
-       adapter.add( String.format(Locale.GERMANY,"%d",a2)+"x",getDrawable(R.drawable.euro_2));
-       adapter.add( String.format(Locale.GERMANY,"%d",a1)+"x",getDrawable(R.drawable.euro_1));
-       adapter.add( String.format(Locale.GERMANY,"%d",a05)+"x",getDrawable(R.drawable.cent_50));
-       adapter.add( String.format(Locale.GERMANY,"%d",a02)+"x",getDrawable(R.drawable.cent_20));
-       adapter.add( String.format(Locale.GERMANY,"%d",a01)+"x",getDrawable(R.drawable.cent_10));
-       adapter.add( String.format(Locale.GERMANY,"%d",a005)+"x",getDrawable(R.drawable.cent_5));
-
       }
       setContentView(recyclerView);
 

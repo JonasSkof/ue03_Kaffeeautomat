@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +16,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
 import at.kaindorf.ahme15.skojom15.R;
 import at.kaindorf.ahme15.skojom15.data.Coffee;
-import at.kaindorf.ahme15.skojom15.data.RestgeldRechner;
 
 public class CoffeeMachineActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -138,7 +133,8 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
                             intent.putExtra("amount", amount);
                             TextView tvAmount = findViewById(R.id.tvAmount);
                             tvAmount.setText(String.format("%.2f", amount) + getString(R.string.currency));
-                            startActivity(intent);
+                            if(amount != 0.00)
+                             startActivity(intent);
                         } else {
                             printToast(getString(R.string.error2));
                         }

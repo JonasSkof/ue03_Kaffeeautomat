@@ -6,12 +6,18 @@
     <string name="sugar2">Medium Sugar</string>
     <string name="sugar4">Much Sugar</string>
     <string name="sugar3">A lot of Sugar</string>
-    <string name="initAmount">0.00$</string>
+    <string name="initAmount">0.00 $</string>
     <string name="sugar">Sugar</string>
     <string name="currency">$</string>
     <string name="bt_Cancel">Cancel</string>
     <string name="bt_Coffee2Go">Coffee2Go</string>
     <string name="error1">Choose a coffee</string>
     <string name="error2">Insert coins</string>
+    <string name="money2">2$</string>
+    <string name="money1">1$</string>
+    <string name="money050">50₥</string>
+    <string name="money020">20₥</string>
+    <string name="money010">10₥</string>
+    <string name="money005">5₥</string>
 
 </resources>
