@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".gui.CoffeeMachineActivity"
-    android:background="#2b2a2a">
+    android:background="#2b2a2a"
+    android:focusedByDefault="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

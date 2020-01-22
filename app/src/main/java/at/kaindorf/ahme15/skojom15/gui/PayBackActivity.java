@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,12 +17,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import at.kaindorf.ahme15.skojom15.R;
+import at.kaindorf.ahme15.skojom15.data.Changes;
+import at.kaindorf.ahme15.skojom15.data.Coffee;
 
 public class PayBackActivity extends AppCompatActivity {
 
@@ -132,55 +137,55 @@ public class PayBackActivity extends AppCompatActivity {
 
   try{
        Bundle bundle = getIntent().getExtras();
-        NumberFormat n = NumberFormat.getInstance();
-        n.setMaximumFractionDigits(2);
-
-      if(bundle != null) {
-       double amount = bundle.getDouble("amount");
-
-       if(amount != 0.00) {
-
-        amount += 0.0000001;
-
-        int a2 = (int) (amount / 2.00);
-        amount -= a2 * 2;
-
-        int a1 = (int) (amount / 1.00);
-        amount -= a1;
-
-        int a05 = (int) (amount / 0.5);
-        amount -= a05 * 0.5;
-
-        int a02 = (int) (amount / 0.2);
-        amount -= a02 * 0.2;
-
-        int a01 = (int) (amount / 0.1);
-        amount -= a01 * 0.1;
-
-        int a005 = (int) (amount / 0.05);
-
-
-        if (a2 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a2) + "x", getDrawable(R.drawable.euro_2));
-
-        if (a1 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a1) + "x", getDrawable(R.drawable.euro_1));
-
-        if (a05 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a05) + "x", getDrawable(R.drawable.cent_50));
-
-        if (a02 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a02) + "x", getDrawable(R.drawable.cent_20));
-
-        if (a01 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a01) + "x", getDrawable(R.drawable.cent_10));
-
-        if (a005 > 0)
-         adapter.add(String.format(Locale.GERMANY, "%d", a005) + "x", getDrawable(R.drawable.cent_5));
-        }
+       int amount=0;
+       // NumberFormat n = NumberFormat.getInstance();
+       // n.setMaximumFractionDigits(2);
+      if(bundle != null){
+          amount = bundle.getInt("amount");
       }
-      setContentView(recyclerView);
 
+       Coffee[] coffees = Coffee.values();
+
+   final ChangeCalculator cc = new ChangeCalculator(amount, Arrays.asList(5,10,20,50,100,200));
+   final List<Changes> changess = cc.getChanges();
+   for (Changes changes : changess) {
+    System.out.println("**" + changes);
+    adapter.add((CharSequence) changes);
+   }
+
+/*
+       for (int ma1 = 0; ma1 <= amount/coffees[0].getPrice(); ma1++) {
+        for (int ma2 = 0; ma2 <= amount/coffees[1].getPrice(); ma2++) {
+         for(int ma3 = 0; ma3 <= amount/coffees[2].getPrice(); ma3++) {
+          for(int ma4 = 0; ma4 <= amount/coffees[3].getPrice(); ma4++) {ß
+           for(int ma5 = 0; ma5 <= amount/coffees[4].getPrice(); ma5++) {
+            for(int ma6 = 0; ma6 <= amount/coffees[5].getPrice(); ma6++) {
+             if(ma1*coffees[0].getPrice()+ma2*coffees[1].getPrice()+ma3*coffees[2].getPrice()+ma4*coffees[3].getPrice()+ma5*coffees[4].getPrice()+ma6*coffees[5].getPrice() == amount)
+             {
+              if(ma1 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma1) + "x", getDrawable(R.drawable.euro_2));
+              if(ma2 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma2) + "x", getDrawable(R.drawable.euro_1));
+              if(ma3 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma3) + "x", getDrawable(R.drawable.cent_50));
+              if(ma4 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma4) + "x", getDrawable(R.drawable.cent_20));
+              if(ma5 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma5) + "x", getDrawable(R.drawable.cent_10));
+              if(ma6 > 0)
+              adapter.add(String.format(Locale.GERMANY, "%d", ma6) + "x", getDrawable(R.drawable.cent_5));
+
+              adapter.add("",null);
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+       */
+
+      setContentView(recyclerView);
 
 
   }catch (Exception ex)

@@ -20,5 +20,6 @@
     <string name="money020">20¢</string>
     <string name="money010">10¢</string>
     <string name="money005">5¢</string>
+    <string name="overload">Maschine überfüllt!</string>
 
 </resources>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".gui.CoffeeMachineActivity"
+    android:background="#2b2a2a">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="390dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        android:minWidth="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+            <Button
+                android:id="@+id/bt1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:shadowColor="#000000"
+                android:text="@string/money2"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/bt2"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/money1"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/bt3"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/money050"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+            <Button
+                android:id="@+id/bt4"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/money020"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/bt5"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/money010"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/bt6"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/money005"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btAbbruch"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/bt_Cancel"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCoins"
+        android:layout_width="152dp"
+        android:layout_height="33dp"
+        android:layout_margin="2dp"
+        android:fontFamily="monospace"
+        android:padding="5dp"
+        android:text="@string/coins"
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="152dp"
+        android:layout_height="33dp"
+        android:layout_margin="2dp"
+        android:layout_marginStart="56dp"
+        android:fontFamily="monospace"
+        android:padding="5dp"
+        android:text="@string/initAmount"
+        android:textAlignment="textStart"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvCoins"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <Button
+        android:id="@+id/btNext"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/bt_Coffee2Go"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/tvSugar"
+        android:layout_width="227dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:text="@string/sugar"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCoins" />
+
+    <com.etiennelawlor.discreteslider.library.ui.DiscreteSeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="296dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:max="4"
+        android:min="0"
+        android:progress="2"
+        android:theme="@style/SeekbarTheme"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/tvSugar" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="8dp"
+        android:text="-"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSugar"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="+"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSugar"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+
+        android:id="@+id/radioGroup"
+        android:layout_width="239dp"
+        android:layout_height="312dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,12 +16,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 import at.kaindorf.ahme15.skojom15.R;
 import at.kaindorf.ahme15.skojom15.data.Coffee;
 
 public class CoffeeMachineActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private double amount = 0.00;
+    private int amount = 0;
+
 
 
     private void addCoffee () {
@@ -35,7 +39,8 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
 
         for (Coffee coffee : coffees) {
             RadioButton radioButton = new RadioButton(this);
-            String s = coffee.getName() + "(" + String.format("%.0f",100* coffee.getPrice()) + "¢)";
+
+            String s = coffee.getName() + "(" + coffee.getPrice() + "¢)";
             int textColor = Color.parseColor("white");
             radioButton.setButtonTintList(ColorStateList.valueOf(textColor));
             radioButton.setTextColor(getResources().getColor(R.color.white, null));
@@ -55,7 +60,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
         bt3.setOnClickListener(this);
         Button bt4 = findViewById(R.id.bt4); //cent20
         bt4.setOnClickListener(this);
-        Button bt5 = findViewById(R.id.bt5); //10
+        Button bt5 = findViewById(R.id.bt5); //cent10
         bt5.setOnClickListener(this);
         Button bt6 = findViewById(R.id.bt6); //cent5
         bt6.setOnClickListener(this);
@@ -66,23 +71,29 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     public void onClick(View v) {
 
+
         switch (v.getId()) {
-            case R.id.bt1: { amount += 2.00; break;}
-            case R.id.bt2: { amount += 1.00; break;}
-            case R.id.bt3: { amount += 0.50; break;}
-            case R.id.bt4: { amount += 0.20; break;}
-            case R.id.bt5: { amount += 0.10; break;}
-            case R.id.bt6: { amount += 0.05; break;}
-            case R.id.btAbbruch: {  amount = 0; }
+            case R.id.bt1: {if(amount<=19800) amount += 200; break;}
+            case R.id.bt2: {if(amount<=19900) amount += 100; break;}
+            case R.id.bt3: {if(amount<=19950) amount += 50; break;}
+            case R.id.bt4: {if(amount<=19980) amount += 20; break;}
+            case R.id.bt5: {if(amount<=19990) amount += 10; break;}
+            case R.id.bt6: {if(amount<=19995) amount += 5; break;}
+            case R.id.btAbbruch: { amount = 0;}
         }
+
         TextView tvAmount = findViewById(R.id.tvAmount);
-        tvAmount.setText(String.format("%.2f",amount)+ getString(R.string.currency));
+
+        tvAmount.setText(String.format("%.2f",(double)amount/100)+ getString(R.string.currency));
+
+        if(amount >= 20000)
+            printToast(getString(R.string.overload));
+
     }
 
     public void setSugarText () {
 
         SeekBar seekBar = findViewById(R.id.seekBar);
-
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -90,7 +101,7 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
                 TextView textView = findViewById(R.id.tvSugar);
 
                 switch(progress) {
-                    case 0: { textView.setText(getText(R.string.sugar0))  ;}
+                    case 0: { textView.setText(R.string.sugar0); break;}
                     case 1: { textView.setText(R.string.sugar1); break;}
                     case 2: { textView.setText(R.string.sugar2); break;}
                     case 3: { textView.setText(R.string.sugar3); break; }
@@ -100,13 +111,10 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
     }
@@ -126,20 +134,18 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
                         if(radioGroup.getCheckedRadioButtonId() == -1) {
                             printToast(getString(R.string.error1));
                         }
-                        double coffeePrice = coffees[(radioGroup.getCheckedRadioButtonId())-1].getPrice();
+                        int coffeePrice = coffees[(radioGroup.getCheckedRadioButtonId())-1].getPrice();
 
                         if (amount >= coffeePrice) {
                             amount -= coffeePrice;
-                            intent.putExtra("amount", amount);
+                            intent.putExtra("amount",amount);
                             TextView tvAmount = findViewById(R.id.tvAmount);
-                            tvAmount.setText(String.format("%.2f", amount) + getString(R.string.currency));
-                            if(amount != 0.00)
+                            tvAmount.setText(String.format(Locale.GERMANY,"%.2f",(double)amount/100) + getString(R.string.currency));
+                            if(amount != 0)
                              startActivity(intent);
                         } else {
                             printToast(getString(R.string.error2));
                         }
-
-
                 } catch (Exception ex)
                 {
                     ex.printStackTrace();
@@ -152,8 +158,6 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,18 +167,24 @@ public class CoffeeMachineActivity extends AppCompatActivity implements View.OnC
         buttonHandler();
         setSugarText();
 
+        try {
+            ChangeCalculator calc = new ChangeCalculator(amount, Arrays.asList(5, 10, 20, 50));
+        }catch ( Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
         if(savedInstanceState!= null) {
-            amount = savedInstanceState.getDouble("amount");
+            amount = savedInstanceState.getInt("amount");
             TextView tvAmount = findViewById(R.id.tvAmount);
-            tvAmount.setText(String.format("%.2f", amount) + getString(R.string.currency));
+            tvAmount.setText(String.format("%.2f",(double) amount/100) + getString(R.string.currency));
         }
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putDouble("amount", amount);
+        outState.putInt("amount", amount);
 
     }
-
 }
